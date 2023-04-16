@@ -1,12 +1,28 @@
-[gd_scene load_steps=18 format=3 uid="uid://b18lvnebe4mm7"]
+[gd_scene load_steps=19 format=3 uid="uid://b18lvnebe4mm7"]
 
 [ext_resource type="Texture2D" uid="uid://be6rjk0hfu4o6" path="res://Art/legionar.png" id="1_tkvu0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu03k"]
 radius = 51.0
-height = 124.0
+height = 104.0
 
 [sub_resource type="Animation" id="Animation_vmvh2"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 3]
+}
+
+[sub_resource type="Animation" id="Animation_rlebf"]
+resource_name = "idle"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,22 +69,6 @@ tracks/0/keys = {
 "values": [3, 3]
 }
 
-[sub_resource type="Animation" id="Animation_rlebf"]
-resource_name = "idle"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 3]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_euev1"]
 _data = {
 "RESET": SubResource("Animation_vmvh2"),
@@ -80,21 +80,21 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c8vge"]
 animation = &"RESET"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nhjtx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j623l"]
 animation = &"walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0imgs"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_itmmg"]
 animation = &"walk_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8rvh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1lo0g"]
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ly36n"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_nhjtx")
+blend_point_0/node = SubResource("AnimationNodeAnimation_j623l")
 blend_point_0/pos = Vector2(-1.1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_0imgs")
+blend_point_1/node = SubResource("AnimationNodeAnimation_itmmg")
 blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_o8rvh")
+blend_point_2/node = SubResource("AnimationNodeAnimation_1lo0g")
 blend_point_2/pos = Vector2(0, 1.1)
 min_space = Vector2(-1.1, -1)
 max_space = Vector2(1, 1.1)
@@ -119,6 +119,9 @@ graph_offset = Vector2(48, -143)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_6rmym"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1p55"]
+radius = 174.184
+
 [node name="legionar" type="CharacterBody2D"]
 position = Vector2(-1, 45)
 
@@ -131,7 +134,7 @@ vframes = 3
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -45)
+position = Vector2(1, -29)
 shape = SubResource("CapsuleShape2D_eu03k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -146,3 +149,11 @@ advance_expression_base_node = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_6rmym")
 parameters/Walk/blend_position = Vector2(-0.00524604, 0.320524)
+
+[node name="Alert" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="Radius" type="CollisionShape2D" parent="Alert"]
+position = Vector2(-2, -33)
+shape = SubResource("CircleShape2D_r1p55")
