@@ -1,11 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cwibabafw5eqv"]
+[gd_scene load_steps=22 format=3 uid="uid://dxlqy1oq3l1rb"]
 
-[ext_resource type="Script" path="res://Characters/cuberix.gd" id="1_yk5mq"]
-[ext_resource type="Texture2D" uid="uid://bv4tgsp1xw3hk" path="res://Art/cuberix.png" id="2_2yq2n"]
+[ext_resource type="Texture2D" uid="uid://it6qsdbm66wk" path="res://Art/cubefix.png" id="1_7thul"]
+[ext_resource type="Script" path="res://Characters/cubefix.gd" id="1_xka0g"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p2edo"]
-radius = 65.0
-height = 150.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2j5rf"]
+radius = 21.0
+height = 96.0
 
 [sub_resource type="Animation" id="Animation_j4s1a"]
 length = 0.001
@@ -126,7 +126,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbtao"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_unymn"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rum6r"]
 states/End/position = Vector2(651, -17)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_cdxe4")
 states/Idle/position = Vector2(283, 20)
@@ -136,21 +136,22 @@ states/Walk/position = Vector2(463, -87)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_a47qn"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_0mg8f"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_hbtao")]
 graph_offset = Vector2(48, -143)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_m7h5w"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xjljx"]
 
-[node name="cuberix" type="CharacterBody2D"]
-scale = Vector2(0.2, 0.2)
-script = ExtResource("1_yk5mq")
+[node name="cubefix" type="CharacterBody2D"]
+script = ExtResource("1_xka0g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_2yq2n")
+texture = ExtResource("1_7thul")
 hframes = 3
 vframes = 3
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_p2edo")
-one_way_collision_margin = 0.0
+position = Vector2(0, 38)
+scale = Vector2(1.33594, 0.854889)
+shape = SubResource("CapsuleShape2D_2j5rf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -158,10 +159,10 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_unymn")
+tree_root = SubResource("AnimationNodeStateMachine_rum6r")
 anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_m7h5w")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_xjljx")
 parameters/Idle/blend_position = Vector2(0.0954546, -0.294576)
 parameters/Walk/blend_position = Vector2(-0.406885, -0.358079)

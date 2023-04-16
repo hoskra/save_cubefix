@@ -1,13 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsahpknbou2mt"]
+[gd_scene load_steps=8 format=3 uid="uid://bsahpknbou2mt"]
 
 [ext_resource type="PackedScene" uid="uid://cwibabafw5eqv" path="res://Characters/cuberix.tscn" id="1_0885o"]
 [ext_resource type="PackedScene" uid="uid://cwd0kj5bsq6h2" path="res://Tilemaps/vector_tilemap.tscn" id="2_f6g5q"]
+[ext_resource type="PackedScene" uid="uid://4c6bqoqq446m" path="res://Characters/cubelix.tscn" id="3_5vx6x"]
+[ext_resource type="PackedScene" uid="uid://b18lvnebe4mm7" path="res://Characters/legionar.tscn" id="3_ya18e"]
+[ext_resource type="Script" path="res://Characters/legionar.gd" id="4_s1i3v"]
+[ext_resource type="Script" path="res://Characters/cubelix.gd" id="4_vivu5"]
+[ext_resource type="PackedScene" uid="uid://dxlqy1oq3l1rb" path="res://Characters/cubefix.tscn" id="7_a2iuw"]
 
 [node name="GameLevel" type="Node2D"]
 
 [node name="cuberix" parent="." instance=ExtResource("1_0885o")]
-position = Vector2(623, 241)
+position = Vector2(653, 377)
 scale = Vector2(1, 1)
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="cuberix"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="VectorTilemap" parent="." instance=ExtResource("2_f6g5q")]
-layer_0/tile_data = PackedInt32Array(458757, 327691, 0, 458758, 327691, 0, 458759, 327691, 0, 458760, 327691, 0, 458761, 327691, 0, 458762, 327691, 0, 458763, 851979, 16, 524299, 851979, 17, 524292, 720907, 14, 524293, 65547, 6, 524294, 65547, 6, 524295, 65547, 6, 524296, 65547, 6, 524297, 65547, 6, 524298, 65547, 6, 458756, 262155, 0, 589836, 851979, 17, 524300, 917515, 17, 589837, 917515, 17, 589835, 65547, 6, 589834, 786443, 18, 589833, 589835, 12, 589832, 589835, 12, 589831, 589835, 12, 589830, 589835, 12, 589829, 589835, 12, 589828, 720907, 15, 589827, 589835, 16, 589826, 196619, 8)
+layer_0/tile_data = PackedInt32Array(458757, 327691, 0, 458758, 327691, 0, 458759, 327691, 0, 458760, 327691, 0, 458761, 327691, 0, 458762, 327691, 0, 458763, 851979, 16, 524299, 851979, 17, 524292, 720907, 14, 524293, 65547, 6, 524294, 65547, 6, 524295, 65547, 6, 524296, 65547, 6, 524297, 65547, 6, 524298, 65547, 6, 458756, 262155, 0, 589836, 851979, 17, 524300, 917515, 17, 589837, 917515, 17, 589835, 65547, 6, 589834, 786443, 18, 589833, 589835, 12, 589832, 589835, 12, 589831, 589835, 12, 589830, 589835, 12, 589829, 589835, 12, 589828, 720907, 15, 589827, 589835, 16, 589826, 196619, 8, 655373, 983051, 14, 655374, 131083, 11, 655372, 589835, 17, 655371, 589835, 17, 655370, 524299, 17, 655375, 131083, 11, 655376, 131083, 11, 655377, 131083, 11, 655378, 131083, 11, 655379, 131083, 11, 655380, 131083, 11, 655381, 131083, 11, 655382, 131083, 11, 655383, 131083, 11, 655384, 131083, 11, 655385, 131083, 11, 655386, 131083, 11, 655387, 131083, 15, 655388, 196619, 15, 589852, 196619, 14, 524317, 655371, 15, 589853, 655371, 16, 524318, 655371, 16, 589854, 720907, 16, 655389, 720907, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(653, 377)
+position_smoothing_enabled = true
+
+[node name="cubelix" parent="." instance=ExtResource("3_5vx6x")]
+position = Vector2(410, 379)
+script = ExtResource("4_vivu5")
+
+[node name="legionar" parent="." instance=ExtResource("3_ya18e")]
+position = Vector2(956, 612)
+script = ExtResource("4_s1i3v")
+
+[node name="cubefix" parent="." instance=ExtResource("7_a2iuw")]
+position = Vector2(542, 358)

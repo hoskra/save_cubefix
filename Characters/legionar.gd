@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-
-const SPEED = 600.0
+const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -12,6 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	update_animation_parameters(Vector2(0,0))
+	state_machine.travel("Walk")
 	
 func _physics_process(delta):
 	# Add the gravity.
@@ -30,18 +30,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	update_animation_parameters(Vector2(direction, 0))
 	move_and_slide()
-	pick_new_state()
+	update_animation_parameters(Vector2(direction, 0))
 
 func update_animation_parameters(move_input: Vector2):
 	if(move_input != Vector2.ZERO):
 		animation_tree.set("parameters/Walk/blend_position", move_input)
-		animation_tree.set("parameters/Idle/blend_position", move_input)
-		
-func pick_new_state():
-	if (velocity != Vector2.ZERO):
-		state_machine.travel("Walk")
-	else:
-		state_machine.travel("Idle")
 		
