@@ -1,6 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://4c6bqoqq446m"]
+[gd_scene load_steps=22 format=3 uid="uid://4c6bqoqq446m"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd5ns6tygm3" path="res://Art/cubelix.png" id="1_ltnt0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8m8iu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fuduh"]
 radius = 100.0
@@ -138,6 +140,7 @@ graph_offset = Vector2(48, -143)
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_otnhm"]
 
 [node name="cubelix" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_8m8iu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
