@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://b18lvnebe4mm7"]
+[gd_scene load_steps=20 format=3 uid="uid://cdpy70feo3nc7"]
 
-[ext_resource type="Texture2D" uid="uid://be6rjk0hfu4o6" path="res://Art/legionar.png" id="1_tkvu0"]
-[ext_resource type="Script" path="res://Characters/legionar.gd" id="1_xok4a"]
+[ext_resource type="Texture2D" uid="uid://be6rjk0hfu4o6" path="res://Art/legionar.png" id="1_pcgty"]
+[ext_resource type="Script" path="res://Scenes/mod.gd" id="1_xo32b"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eu03k"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hust6"]
 radius = 51.0
-height = 104.0
+height = 124.0
 
 [sub_resource type="Animation" id="Animation_vmvh2"]
 length = 0.4
@@ -108,7 +108,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6tew2"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_st4fc"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s4qnq"]
 states/End/position = Vector2(651, -17)
 states/RESET/node = SubResource("AnimationNodeAnimation_c8vge")
 states/RESET/position = Vector2(274, -30)
@@ -118,26 +118,26 @@ states/Walk/position = Vector2(459, -62)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_bhqmv"), "RESET", "Walk", SubResource("AnimationNodeStateMachineTransition_mgshp"), "Walk", "RESET", SubResource("AnimationNodeStateMachineTransition_6tew2")]
 graph_offset = Vector2(48, -143)
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_aao62"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wkimw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r1p55"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdmu4"]
 radius = 174.184
 
-[node name="legionar" type="CharacterBody2D"]
-position = Vector2(-1, 45)
-script = ExtResource("1_xok4a")
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_mask = 0
+script = ExtResource("1_xo32b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5, -62)
 scale = Vector2(0.461, 0.461)
-texture = ExtResource("1_tkvu0")
+texture = ExtResource("1_pcgty")
 hframes = 3
 vframes = 3
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -29)
-shape = SubResource("CapsuleShape2D_eu03k")
+position = Vector2(1, -45)
+shape = SubResource("CapsuleShape2D_hust6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -145,19 +145,19 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_st4fc")
+tree_root = SubResource("AnimationNodeStateMachine_s4qnq")
 anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_aao62")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_wkimw")
 parameters/Walk/blend_position = Vector2(-0.00524604, 0.320524)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="Alert" type="Area2D" parent="."]
+collision_layer = 0
 monitorable = false
 
 [node name="Radius" type="CollisionShape2D" parent="Alert"]
 position = Vector2(-2, -33)
-shape = SubResource("CircleShape2D_r1p55")
-
-[connection signal="body_entered" from="Alert" to="." method="_on_alert_body_entered"]
-[connection signal="body_exited" from="Alert" to="." method="_on_alert_body_exited"]
+shape = SubResource("CircleShape2D_kdmu4")
