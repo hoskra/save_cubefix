@@ -1,0 +1,166 @@
+[gd_scene load_steps=3 format=3 uid="uid://cumnkgwpysnm8"]
+
+[ext_resource type="Script" path="res://Levels/start_menu.gd" id="1_3tgxx"]
+[ext_resource type="AudioStream" uid="uid://887b6outnraw" path="res://Sounds/menu.mp3" id="2_fu456"]
+
+[node name="start_menu" type="Node2D"]
+script = ExtResource("1_3tgxx")
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.529
+anchor_top = 0.08
+anchor_right = 0.529
+anchor_bottom = 0.7
+offset_right = 1197.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.5
+offset_top = -101.0
+offset_right = 193.5
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Save Cubefix!"
+horizontal_alignment = 1
+
+[node name="play" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+text = "Play The Game"
+
+[node name="info" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+text = "How To Play"
+
+[node name="quit" type="Button" parent="menu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fu456")
+volume_db = -7.627
+autoplay = true
+
+[node name="info" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_left = 0.529
+anchor_top = 0.08
+anchor_right = 0.529
+anchor_bottom = 0.7
+offset_right = 1197.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.5
+offset_top = -101.0
+offset_right = 193.5
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="info/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "How To Play"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="info/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 4.05
+
+[node name="VBoxContainer" type="VBoxContainer" parent="info/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Label2" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "←"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "→"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "space"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "a"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "s"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "e"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="info/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label3" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "move left"
+
+[node name="Label4" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "move right"
+
+[node name="Label7" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "jump"
+
+[node name="Label5" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "swap characters"
+
+[node name="Label6" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "attack"
+
+[node name="Label8" type="Label" parent="info/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "drink potion"
+
+[node name="back" type="Button" parent="info/VBoxContainer"]
+layout_mode = 2
+text = "Return to Menu"
+
+[connection signal="button_down" from="menu/VBoxContainer/play" to="." method="_on_play_button_down"]
+[connection signal="pressed" from="menu/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/info" to="." method="_on_info_pressed"]
+[connection signal="pressed" from="menu/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="info/VBoxContainer/back" to="." method="_on_back_pressed"]

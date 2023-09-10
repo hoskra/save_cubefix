@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var game_level = get_owner()
+@onready var game_level = get_parent().get_parent()
 
 func getSpeed():
 	if(game_level.potionActive):
@@ -24,6 +24,11 @@ func _physics_process(delta):
 		handle_movement(delta)
 		move_and_slide()
 		pick_new_state()
+	else:
+		state_machine.travel("Idle")
+		if not is_on_floor():
+			velocity.y += gravity * delta
+			move_and_slide()
 
 func handle_movement(delta):
 	# Add the gravity.

@@ -10,16 +10,21 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
-@onready var game_level = get_parent()
+@onready var game_level = get_parent().get_parent()
 
 func _ready():
 	update_animation_parameters(Vector2(0,0))
 
 func _physics_process(delta):
 	if(game_level.selected_player == 0):
-		handle_movement(delta)
-		move_and_slide()
 		pick_new_state()
+		move_and_slide()
+		handle_movement(delta)
+	else:
+		state_machine.travel("Idle")
+		if not is_on_floor():
+			velocity.y += gravity * delta
+			move_and_slide()
 	
 func handle_movement(delta):
 	# Add the gravity.
