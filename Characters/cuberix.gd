@@ -10,6 +10,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var game_level = get_owner()
 
+func getSpeed():
+	if(game_level.potionActive):
+		return SPEED + 600
+	else:
+		return SPEED
+		
 func _ready():
 	update_animation_parameters(Vector2(0,0))
 
@@ -32,9 +38,9 @@ func handle_movement(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * getSpeed()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, getSpeed())
 		
 	update_animation_parameters(Vector2(direction, 0))
 
