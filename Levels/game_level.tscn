@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://qr22jdl5xlpy"]
+[gd_scene load_steps=24 format=3 uid="uid://qr22jdl5xlpy"]
 
 [ext_resource type="PackedScene" uid="uid://cwibabafw5eqv" path="res://Characters/cuberix.tscn" id="1_0885o"]
 [ext_resource type="PackedScene" uid="uid://4c6bqoqq446m" path="res://Characters/cubelix.tscn" id="3_5vx6x"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Characters/cubelix.gd" id="4_vivu5"]
 [ext_resource type="Texture2D" uid="uid://yas3m1lswryh" path="res://Art/glow.png" id="6_6e5or"]
 [ext_resource type="Texture2D" uid="uid://dmc7nol5owlb1" path="res://Art/baner_cubelix_selected.png" id="7_yviwk"]
+[ext_resource type="FontFile" uid="uid://bdw3p51pb0eq3" path="res://Art/DejaVuSans.ttf" id="8_tmot0"]
 [ext_resource type="Texture2D" uid="uid://gpd1l317n01r" path="res://Art/baner_cuberix.png" id="9_fd4vi"]
 [ext_resource type="Texture2D" uid="uid://dtpuq8kmvbf" path="res://Art/lektvar.png" id="10_8g4n3"]
 [ext_resource type="Texture2D" uid="uid://br8vq33e70w41" path="res://Art/heart.png" id="11_3n7mq"]
@@ -113,6 +114,9 @@ func _process(delta):
 	pass
 "
 
+[sub_resource type="Theme" id="Theme_555bl"]
+default_font = ExtResource("8_tmot0")
+
 [sub_resource type="Theme" id="Theme_fs5mm"]
 
 [node name="GameLevel" type="Node2D"]
@@ -163,6 +167,7 @@ offset_right = 1197.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_555bl")
 
 [node name="info_camera" type="Camera2D" parent="info"]
 position = Vector2(598, 324)

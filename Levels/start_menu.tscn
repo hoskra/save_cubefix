@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cumnkgwpysnm8"]
+[gd_scene load_steps=5 format=3 uid="uid://cumnkgwpysnm8"]
 
 [ext_resource type="Script" path="res://Levels/start_menu.gd" id="1_3tgxx"]
 [ext_resource type="AudioStream" uid="uid://887b6outnraw" path="res://Sounds/menu.mp3" id="2_fu456"]
+[ext_resource type="FontFile" uid="uid://bdw3p51pb0eq3" path="res://Art/DejaVuSans.ttf" id="3_n16sf"]
+
+[sub_resource type="Theme" id="Theme_jni0a"]
+default_font = ExtResource("3_n16sf")
 
 [node name="start_menu" type="Node2D"]
 script = ExtResource("1_3tgxx")
@@ -45,10 +49,6 @@ text = "Play The Game"
 layout_mode = 2
 text = "How To Play"
 
-[node name="quit" type="Button" parent="menu/VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fu456")
 volume_db = -7.627
@@ -65,6 +65,7 @@ offset_right = 1197.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_jni0a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="info"]
 layout_mode = 1
@@ -162,5 +163,4 @@ text = "Return to Menu"
 [connection signal="button_down" from="menu/VBoxContainer/play" to="." method="_on_play_button_down"]
 [connection signal="pressed" from="menu/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="menu/VBoxContainer/info" to="." method="_on_info_pressed"]
-[connection signal="pressed" from="menu/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="info/VBoxContainer/back" to="." method="_on_back_pressed"]
