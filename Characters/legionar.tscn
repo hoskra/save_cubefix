@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b18lvnebe4mm7"]
+[gd_scene load_steps=22 format=3 uid="uid://b18lvnebe4mm7"]
 
 [ext_resource type="Texture2D" uid="uid://be6rjk0hfu4o6" path="res://Art/legionar.png" id="1_tkvu0"]
 [ext_resource type="Script" path="res://Characters/legionar.gd" id="1_xok4a"]
@@ -70,9 +70,26 @@ tracks/0/keys = {
 "values": [3, 3]
 }
 
+[sub_resource type="Animation" id="Animation_q5l1b"]
+resource_name = "dead"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_euev1"]
 _data = {
 "RESET": SubResource("Animation_vmvh2"),
+"dead": SubResource("Animation_q5l1b"),
 "idle": SubResource("Animation_rlebf"),
 "walk_left": SubResource("Animation_d87rl"),
 "walk_right": SubResource("Animation_svd4p")
@@ -109,12 +126,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6tew2"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_st4fc"]
-states/End/position = Vector2(651, -17)
+states/End/position = Vector2(475.39, 28.122)
 states/RESET/node = SubResource("AnimationNodeAnimation_c8vge")
 states/RESET/position = Vector2(274, -30)
 states/Start/position = Vector2(146, -62)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_ly36n")
-states/Walk/position = Vector2(459, -62)
+states/Walk/position = Vector2(444.366, -69.3171)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_bhqmv"), "RESET", "Walk", SubResource("AnimationNodeStateMachineTransition_mgshp"), "Walk", "RESET", SubResource("AnimationNodeStateMachineTransition_6tew2")]
 graph_offset = Vector2(48, -143)
 
@@ -122,6 +139,13 @@ graph_offset = Vector2(48, -143)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1p55"]
 radius = 174.184
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srqtr"]
+bg_color = Color(0.243137, 0.54902, 0.0862745, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="legionar" type="CharacterBody2D"]
 position = Vector2(-1, 45)
@@ -158,6 +182,17 @@ monitorable = false
 [node name="Radius" type="CollisionShape2D" parent="Alert"]
 position = Vector2(-2, -33)
 shape = SubResource("CircleShape2D_r1p55")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -63.0
+offset_top = -106.0
+offset_right = 67.0
+offset_bottom = -94.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_srqtr")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
 
 [connection signal="body_entered" from="Alert" to="." method="_on_alert_body_entered"]
 [connection signal="body_exited" from="Alert" to="." method="_on_alert_body_exited"]
