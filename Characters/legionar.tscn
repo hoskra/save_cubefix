@@ -22,6 +22,22 @@ tracks/0/keys = {
 "values": [3, 3]
 }
 
+[sub_resource type="Animation" id="Animation_q5l1b"]
+resource_name = "dead"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 3]
+}
+
 [sub_resource type="Animation" id="Animation_rlebf"]
 resource_name = "idle"
 length = 0.4
@@ -56,22 +72,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_svd4p"]
 resource_name = "walk_right"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 3]
-}
-
-[sub_resource type="Animation" id="Animation_q5l1b"]
-resource_name = "dead"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false

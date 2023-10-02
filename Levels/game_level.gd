@@ -8,6 +8,8 @@ var selected_player = 0
 @onready var potionEnd = $Sounds/potionEnd;
 @onready var attack = $Sounds/attack;
 @onready var jump = $Sounds/jump;
+var cubefix_found = false;
+var player_dead = false;
 
 var cubelix_not_selected = preload('res://Art/baner_cubelix.png')
 var cuberix_not_selected = preload('res://Art/baner_cuberix.png')

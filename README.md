@@ -13,10 +13,8 @@ A Gamejam game rework in Godot Engine 4.
 - Player can hit enemies
 - Player can drink potions
 - Sound effects
-
-### TODO
 - Menu screen with control explanation
-- Make game winnable and loosable
+- Game is winnable and loosable
 
 ## The original Gamejam plan
 

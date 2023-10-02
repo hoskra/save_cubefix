@@ -9,15 +9,23 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var game_level = get_parent().get_parent()
+@onready var damage = $/root/GameLevel/Sounds/damage;
 
+var health = 5
+var recently_hit = false;
+
+func set_health_bar():
+	$/root/GameLevel/Level/GUI/Display/cuberix_health/label.text = str(health)
+	
 func getSpeed():
-	if(game_level.potionActive):
+	if(game_level.cuberix_potionCount):
 		return SPEED + 600
 	else:
 		return SPEED
 		
 func _ready():
 	update_animation_parameters(Vector2(0,0))
+	set_health_bar()
 
 func _physics_process(delta):
 	if(game_level.selected_player == 1):
@@ -60,3 +68,15 @@ func pick_new_state():
 	else:
 		state_machine.travel("Idle")
 		
+func _on_alert_body_entered(body):
+	if "legionar" in body.name:
+		if not recently_hit:
+			health -= 1
+			set_health_bar()
+			damage.play()
+			recently_hit = true
+			if health == 0:
+				print("dead")
+				game_level.player_dead = true;
+			await get_tree().create_timer(2).timeout
+			recently_hit = false

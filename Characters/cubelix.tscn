@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://4c6bqoqq446m"]
+[gd_scene load_steps=24 format=3 uid="uid://4c6bqoqq446m"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd5ns6tygm3" path="res://Art/cubelix.png" id="1_ltnt0"]
+[ext_resource type="Script" path="res://Characters/cubelix.gd" id="2_7jxn8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8m8iu"]
 
@@ -139,8 +140,12 @@ graph_offset = Vector2(48, -143)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_otnhm"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_48an3"]
+radius = 88.6002
+
 [node name="cubelix" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_8m8iu")
+script = ExtResource("2_7jxn8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -167,3 +172,12 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_otnhm")
 parameters/Idle/blend_position = Vector2(0.0954546, -0.294576)
 parameters/Walk/blend_position = Vector2(-0.406885, -0.358079)
+
+[node name="Alert" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="Alert"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_48an3")
+
+[connection signal="body_entered" from="Alert" to="." method="_on_alert_body_entered"]
+[connection signal="body_entered" from="Alert" to="Alert" method="_on_body_entered"]

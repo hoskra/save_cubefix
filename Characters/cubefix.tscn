@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxlqy1oq3l1rb"]
+[gd_scene load_steps=23 format=3 uid="uid://dxlqy1oq3l1rb"]
 
 [ext_resource type="Texture2D" uid="uid://it6qsdbm66wk" path="res://Art/cubefix.png" id="1_7thul"]
 [ext_resource type="Script" path="res://Characters/cubefix.gd" id="1_xka0g"]
@@ -138,10 +138,13 @@ graph_offset = Vector2(48, -143)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_xjljx"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdcmy"]
+
 [node name="cubefix" type="CharacterBody2D"]
 script = ExtResource("1_xka0g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_7thul")
 hframes = 3
@@ -149,7 +152,6 @@ vframes = 3
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 38)
 scale = Vector2(1.33594, 0.854889)
 shape = SubResource("CapsuleShape2D_2j5rf")
 
@@ -166,3 +168,11 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_xjljx")
 parameters/Idle/blend_position = Vector2(0.0954546, -0.294576)
 parameters/Walk/blend_position = Vector2(-0.406885, -0.358079)
+
+[node name="Alert" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alert"]
+scale = Vector2(-9.527, 10)
+shape = SubResource("CircleShape2D_kdcmy")
+
+[connection signal="body_entered" from="Alert" to="." method="_on_alert_body_entered"]

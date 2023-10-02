@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var attack = $/root/GameLevel/Sounds/attack;
+@onready var game_level = get_parent().get_parent()
 
 var is_ready = false
 

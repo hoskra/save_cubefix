@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cwibabafw5eqv"]
+[gd_scene load_steps=23 format=3 uid="uid://cwibabafw5eqv"]
 
 [ext_resource type="Script" path="res://Characters/cuberix.gd" id="1_yk5mq"]
 [ext_resource type="Texture2D" uid="uid://bv4tgsp1xw3hk" path="res://Art/cuberix.png" id="2_2yq2n"]
@@ -138,6 +138,9 @@ graph_offset = Vector2(48, -143)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_m7h5w"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_llflg"]
+radius = 88.6002
+
 [node name="cuberix" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_yk5mq")
@@ -167,3 +170,11 @@ active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_m7h5w")
 parameters/Idle/blend_position = Vector2(0.0954546, -0.294576)
 parameters/Walk/blend_position = Vector2(-0.406885, -0.358079)
+
+[node name="Alert" type="Area2D" parent="."]
+
+[node name="Radius" type="CollisionShape2D" parent="Alert"]
+position = Vector2(0, 25)
+shape = SubResource("CircleShape2D_llflg")
+
+[connection signal="body_entered" from="Alert" to="." method="_on_alert_body_entered"]

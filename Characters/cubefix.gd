@@ -10,30 +10,32 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var game_level = get_parent().get_parent()
 
 func _ready():
 	update_animation_parameters(Vector2(0,0))
 	
 func _physics_process(delta):
+	pass
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	#if not is_on_floor():
+	#	velocity.y += gravity * delta
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	#var direction = Input.get_axis("ui_left", "ui_right")
+	#if direction:
+	#	velocity.x = direction * SPEED
+	#else:
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	update_animation_parameters(Vector2(direction, 0))
-	move_and_slide()
-	pick_new_state()
+	#update_animation_parameters(Vector2(direction, 0))
+	#move_and_slide()
+	#pick_new_state()
 
 func update_animation_parameters(move_input: Vector2):
 	if(move_input != Vector2.ZERO):
@@ -46,3 +48,6 @@ func pick_new_state():
 	else:
 		state_machine.travel("Idle")
 		
+func _on_alert_body_entered(body):
+	if body.name == "cuberix" or body.name == "cubelix":
+		game_level.cubefix_found = true;
